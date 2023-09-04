@@ -116,7 +116,7 @@ const Chatbot = ({ steps, name }) => {
             botAvatar="/react-chatbot/unnamed.jpg"
             bubbleOptionStyle={{
               fontSize: "22px",
-              width: "500px",
+              width: "480px",
               marginLeft: "86px"
             }}
             bubbleStyle={{
