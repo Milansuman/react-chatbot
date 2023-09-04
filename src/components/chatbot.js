@@ -4,10 +4,10 @@ import styled from "styled-components";
 
 const Chatbotwrapper = styled.div`
   & .cRmLCo {
-    margin-left: 67px;
+    margin-left: 86px;
   }
   & .hiMqtA {
-    margin-left: 67px;
+    margin-left: 86px;
   }
 `;
 
@@ -115,11 +115,11 @@ const Chatbot = ({ steps, name }) => {
             handleEnd={handleEnd}
             botAvatar="/react-chatbot/unnamed.jpg"
             bubbleOptionStyle={{
-              fontSize: "20px",
+              fontSize: "22px",
               width: "500px"
             }}
             bubbleStyle={{
-              fontSize: "20px",
+              fontSize: "22px",
               fontFamily: "Arial"
             }}
             contentStyle={{
@@ -128,8 +128,8 @@ const Chatbot = ({ steps, name }) => {
               fontFamily: "Arial"
             }}
             avatarStyle={{
-              width: "60px",
-              height: "60px"
+              width: "80px",
+              height: "80px"
             }}
             headerComponent={
               <h1
