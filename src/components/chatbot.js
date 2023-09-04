@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import ChatBot from "react-simple-chatbot";
 
 const Chatbot = ({ steps, name }) => {
@@ -101,11 +101,43 @@ const Chatbot = ({ steps, name }) => {
       >
         {showChatbot && (
           <ChatBot
-            headerTitle={"Clinic" + name}
+            botDelay={4000}
             handleEnd={handleEnd}
             botAvatar="/react-chatbot/unnamed.jpg"
+            bubbleOptionStyle={{
+              fontSize: "17px"
+            }}
+            bubbleStyle={{
+              fontSize: "17px",
+              fontFamily: "Arial"
+            }}
+            contentStyle={{
+              width: "40vw",
+              height: "65vh",
+              fontFamily: "Arial"
+            }}
+            avatarStyle={{
+              width: "40px",
+              height: "40px"
+            }}
+            headerComponent={
+              <h1
+                style={{
+                  textAlign: "center",
+                  background: "#6E48AA",
+                  color: "white",
+                  margin: 0,
+                  paddingTop: "10px",
+                  paddingBottom: "10px",
+                }}
+              >
+                Clinic{name}
+              </h1>
+            }
             steps={steps}
             style={{
+              width: "40vw",
+              height: "80vh",
               whiteSpace: "pre-line",
               fontFamily: "Helvetica",
               marginBottom: "20px",
