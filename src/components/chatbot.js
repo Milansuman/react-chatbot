@@ -103,7 +103,7 @@ const Chatbot = ({ steps, name }) => {
           <ChatBot
             headerTitle={"Clinic" + name}
             handleEnd={handleEnd}
-            botAvatar="/unnamed.jpg"
+            botAvatar="/react-chatbot/unnamed.jpg"
             steps={steps}
             style={{
               whiteSpace: "pre-line",
