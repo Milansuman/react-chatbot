@@ -1,0 +1,444 @@
+{
+  "steps": [
+    {
+      "id": "hello",
+      "message": "¡Hola! 👋🏼\n\nMi nombre es Natalie y soy tu asistente aquí en Queens Star Medical.\n\n¿En qué puedo ayudarte hoy?",
+      "trigger": "ask-choose"
+    },
+    {
+      "id": "ask-choose",
+      "message": "Por favor elige una opción a continuación👇🏼",
+      "trigger": "choose-option"
+    },
+    {
+      "id": "choose-option",
+      "options": [
+        {
+          "value": "appointment",
+          "label": "Me gustaría solicitar una cita",
+          "trigger": "greate"
+        },
+        {
+          "value": "insurance",
+          "label": "¿Qué seguros aceptan?",
+          "trigger": "check-insurances"
+        },
+        {
+          "value": "services",
+          "label": "¿Qué servicios ofrecen?",
+          "trigger": "check-services"
+        },
+        {
+          "value": "faq",
+          "label": "Preguntas frecuentes",
+          "trigger": "check-faq"
+        }
+      ]
+    },
+    {
+      "id": "check-faq",
+      "message": "Aquí están las preguntas que nos hacen con más frecuencia tanto por parte de nuevos pacientes como de pacientes de larga duración.",
+      "trigger": "faqs"
+    },
+    {
+      "id": "faqs",
+      "options": [
+        {
+          "value": "faq1",
+          "label": "¿Cuándo están abiertos?",
+          "trigger": "open-time"
+        },
+        {
+          "value": "faq2",
+          "label": "¿Qué puedes decir sobre tus médicos?",
+          "trigger": "providers"
+        },
+        {
+          "value": "faq3",
+          "label": "¿Qué te hace único o destacado?",
+          "trigger": "whatmakeyou"
+        },
+        {
+          "value": "faq4",
+          "label": "Quiero hacer una pregunta específica",
+          "trigger": "specific-question"
+        }
+      ]
+    },
+    {
+      "id": "specific-question",
+      "message": "¡Genial! 😁 \n\nAntes de que hagas tu pregunta, queremos recopilar algunos datos rápidos para poder responderte lo antes posible. 🏃‍♀",
+      "trigger": "question-new-patient"
+    },
+    {
+      "id": "question-new-patient",
+      "message": "¿Eres un paciente nuevo o existente?",
+      "trigger": "choose-question-new-patient"
+    },
+    {
+      "id": "choose-question-new-patient",
+      "options": [
+        {
+          "value": "new",
+          "label": "Nuevo",
+          "trigger": "question-nice-to-meet"
+        },
+        {
+          "value": "existing",
+          "label": "Existente",
+          "trigger": "question-ask-name"
+        }
+      ]
+    },
+    {
+      "id": "question-nice-to-meet",
+      "message": "¡Estamos emocionados de conocerte! 😉",
+      "trigger": "question-ask-name"
+    },
+    {
+      "id": "question-ask-name",
+      "message": "Para empezar, ¿cuál es tu nombre?",
+      "trigger": "question-enter-name"
+    },
+    {
+      "id": "question-enter-name",
+      "user": true,
+      "trigger": "question-ask-phone-number"
+    },
+    {
+      "id": "question-ask-phone-number",
+      "message": "Podemos enviarte un mensaje de texto o llamarte, ¿cuál es el mejor número de teléfono para comunicarnos contigo? 📲",
+      "trigger": "question-enter-phone-number"
+    },
+    {
+      "id": "question-enter-phone-number",
+      "user": true,
+      "trigger": "question-ask-email"
+    },
+    {
+      "id": "question-ask-email",
+      "message": "¿Cuál es el mejor correo electrónico para ti? 📩",
+      "trigger": "question-enter-email"
+    },
+    {
+      "id": "question-enter-email",
+      "user": true,
+      "trigger": "whatyouwant"
+    },
+    {
+      "id": "whatyouwant",
+      "message": "¿Qué deseas preguntarnos hoy?",
+      "trigger": "enter-question"
+    },
+    {
+      "id": "enter-question",
+      "user": true,
+      "trigger": "thanks-ask"
+    },
+    {
+      "id": "thanks-ask",
+      "message": "Gracias por eso 👍\n\nNuestro coordinador de pacientes se pondrá en contacto contigo de inmediato 🏃",
+      "trigger": "goodbye"
+    },
+    {
+      "id": "whatmakeyou",
+      "message": "⭐ 11 años en el negocio \n⭐ Relaciones a largo plazo con los pacientes\n⭐ Brindamos atención individualizada y personalizada \n⭐ Nos tomamos el tiempo necesario para atender a los pacientes según sus necesidades",
+      "trigger": "request-appointment"
+    },
+    {
+      "id": "providers",
+      "options": [
+        {
+          "value": "asya",
+          "label": "Asya Levy, M.D.",
+          "trigger": "asya"
+        },
+        {
+          "value": "eduard",
+          "label": "Eduard Levy, M.D.",
+          "trigger": "eduard"
+        }
+      ]
+    },
+    {
+      "id": "eduard",
+      "message": "👨🏻‍⚕️ El Dr. Eduard Levy se ha ganado un gran respeto de sus pacientes y colegas por su dedicación a su trabajo. Ha estado practicando Medicina Interna desde 1990 y hasta el día de hoy sigue siendo apasionado por su ocupación.",
+      "trigger": "eduard1"
+    },
+    {
+      "id": "eduard1",
+      "message": "Tiene una naturaleza amable y amigable, se esfuerza al máximo para ayudar a sus pacientes y los trata con gran cuidado y atención.👏🏼",
+      "trigger": "request-appointment"
+    },
+    {
+      "id": "asya",
+      "message": "👩🏻‍⚕️ La Dra. Asya Levy es una médica determinada y trabajadora. Trata a sus pacientes de manera personal y con tanto cuidado y atención como si fueran parte de su familia.",
+      "trigger": "asya1"
+    },
+    {
+      "id": "asya1",
+      "message": "La Dra. Asya Levy fue reconocida por Patients' Choice en 2008. Cada mes, más de 40,000 pacientes en todo Estados Unidos brindan comentarios sobre sus experiencias y califican varios componentes como el trato al paciente, el tiempo dedicado al paciente, el grado de seguimiento y la cortesía del personal de la oficina. 🙌🏼",
+      "trigger": "request-appointment"
+    },
+    {
+      "id": "open-time",
+      "message": "Estas son nuestras horas de atención 🕒: \n\nLunes, miércoles, jueves y domingo: 8:30 AM - 4:30 PM \nMartes y viernes: 8:30 AM - 1:30 PM \nSábado: Cerrado",
+      "trigger": "request-appointment"
+    },
+    {
+      "id": "check-services",
+      "message": "Aquí tienes una lista de los servicios que ofrecemos: \n\n🩺 Medicina Interna \n🩺 Medicina Geriátrica \n🩺 Cardiología \n🩺 Trastornos Pulmonares y del Sueño",
+      "trigger": "promise-services"
+    },
+    {
+      "id": "promise-services",
+      "message": "¡Por favor contáctanos para obtener más información sobre nuestros servicios! Estaremos encantados de responder todas tus preguntas. 😁",
+      "trigger": "request-appointment"
+    },
+    {
+      "id": "check-insurances",
+      "message": "  Aquí tienes una lista de los seguros que aceptamos: \n  \n✅ 1199 \n✅ AARP - Medicare \n✅ Aetna \n✅ Allied\n✅ BlueCross BlueShield (BCBS) \n✅ Cigna",
+      "trigger": "insurance1"
+    },
+    {
+      "id": "insurance1",
+      "message": "  ✅ Elderplan \n✅ EmblemHealth \n✅ Fidelis \n✅ GHI\n✅ Healthfirst \n✅ HIP  \n✅ Humana \n✅ Magnacare",
+      "trigger": "insurance2"
+    },
+    {
+      "id": "insurance2",
+      "message": "  ✅ Metroplus \n✅ Medicare \n✅ Medicare/Medicaid \n✅  Nippon Life Benefits  \n  ✅ Oxford \n✅ United HealthCare (UHC) \n✅ United HealthCare  (UHC) Community Plan \n✅ Wellcare",
+      "trigger": "insurance3"
+    },
+    {
+      "id": "insurance3",
+      "message": "  Por favor contáctanos para obtener información sobre seguros. ¡Estaremos encantados de responder todas tus preguntas! 😁",
+      "trigger": "request-appointment"
+    },
+    {
+      "id": "request-appointment",
+      "message": "¿Te gustaría solicitar una cita?",
+      "trigger": "promise-appointment"
+    },
+    {
+      "id": "promise-appointment",
+      "options": [
+        {
+          "value": "yes",
+          "label": "Sí",
+          "trigger": "ask-appointment"
+        },
+        {
+          "value": "no",
+          "label": "No",
+          "trigger": "no-appointment"
+        }
+      ]
+    },
+    {
+      "id": "no-appointment",
+      "message": "¡No hay problema! Entiendo que tal vez quieras más información antes de solicitar una cita 📅",
+      "trigger": "have-better"
+    },
+    {
+      "id": "have-better",
+      "message": "Para tener una mejor comprensión de nuestra práctica, haré que un coordinador de pacientes se comunique contigo lo antes posible 🏃🏼",
+      "trigger": "ask-name1"
+    },
+    {
+      "id": "ask-name1",
+      "message": "Para empezar, ¿cuál es tu nombre?",
+      "trigger": "enter-name1"
+    },
+    {
+      "id": "enter-name1",
+      "user": true,
+      "trigger": "hey"
+    },
+    {
+      "id": "hey",
+      "message": "¡Hola {previousValue}!",
+      "trigger": "ask-phone-number1"
+    },
+    {
+      "id": "ask-phone-number1",
+      "message": "Para poder comunicarnos contigo, ¿cuál es tu mejor número de teléfono? 📲",
+      "trigger": "enter-phone-number1"
+    },
+    {
+      "id": "enter-phone-number1",
+      "user": true,
+      "trigger": "send2team"
+    },
+    {
+      "id": "send2team",
+      "message": "  ¡Entendido! \n  \n  Estoy enviando esto a mi equipo ahora mismo y alguien se pondrá en contacto contigo lo antes posible 🏃",
+      "trigger": "ask-another"
+    },
+    {
+      "id": "ask-another",
+      "message": "Mientras tanto, ¿te gustaría hacer otra pregunta?",
+      "trigger": "choose-another"
+    },
+    {
+      "id": "choose-another",
+      "options": [
+        {
+          "value": "yes",
+          "label": "Sí",
+          "trigger": "ask-choose"
+        },
+        {
+          "value": "no",
+          "label": "No",
+          "trigger": "goodbye"
+        }
+      ]
+    },
+    {
+      "id": "greate",
+      "message": "  Genial 😁 \n  \n  Estoy más que feliz de ayudarte con eso. Solo necesito recopilar algunas cosas de ti para comenzar. Solo tomará un segundo...",
+      "trigger": "ask-appointment"
+    },
+    {
+      "id": "ask-appointment",
+      "message": "Indica el tipo de cita que te gustaría solicitar.",
+      "trigger": "choose-appointment"
+    },
+    {
+      "id": "choose-appointment",
+      "options": [
+        {
+          "value": "telemedicine",
+          "label": "Telemedicina",
+          "trigger": "ask-new-patient"
+        },
+        {
+          "value": "officevisit",
+          "label": "Visita a la oficina",
+          "trigger": "ask-new-patient"
+        }
+      ]
+    },
+    {
+      "id": "ask-new-patient",
+      "message": "¿Eres un paciente nuevo o existente?",
+      "trigger": "choose-existing"
+    },
+    {
+      "id": "choose-existing",
+      "options": [
+        {
+          "value": "new",
+          "label": "Nuevo",
+          "trigger": "nice-to-meet"
+        },
+        {
+          "value": "existing",
+          "label": "Existente",
+          "trigger": "ask-name"
+        }
+      ]
+    },
+    {
+      "id": "nice-to-meet",
+      "message": "  ¡Estamos emocionados de conocerte! 😉  \n  \n  Ten en cuenta que la mayoría de los seguros requieren un Médico de Atención Primaria. Los pacientes nuevos pueden necesitar seleccionar o cambiar a su Médico de Atención Primaria antes de su cita.",
+      "trigger": "ask-name"
+    },
+    {
+      "id": "ask-name",
+      "message": "Para empezar, ¿cuál es tu nombre?",
+      "trigger": "enter-name"
+    },
+    {
+      "id": "enter-name",
+      "user": true,
+      "trigger": "ask-phone-number"
+    },
+    {
+      "id": "ask-phone-number",
+      "message": "Enviaremos una confirmación de tu solicitud de cita por mensaje de texto. ¿Cuál es el mejor número para enviarte la confirmación? 📲",
+      "trigger": "enter-phone-number"
+    },
+    {
+      "id": "enter-phone-number",
+      "user": true,
+      "trigger": "noted"
+    },
+    {
+      "id": "noted",
+      "message": "Entendido.",
+      "trigger": "ask-email"
+    },
+    {
+      "id": "ask-email",
+      "message": "¿Cuál es el mejor correo electrónico para ti? 📩",
+      "trigger": "enter-email"
+    },
+    {
+      "id": "enter-email",
+      "user": true,
+      "trigger": "gotit"
+    },
+    {
+      "id": "gotit",
+      "message": "Entendido.",
+      "trigger": "ask-time"
+    },
+    {
+      "id": "ask-time",
+      "message": "  Ahora dinos qué día te funciona mejor. Ten en cuenta nuestras horas de atención 🕒: \n  \n  Lunes, miércoles, viernes y domingo: 3:00 PM - 4:00 PM  \n  Martes: 3:00 PM - 4:00 PM 5:00 PM - 6:00 PM \n  \n  Elige un día a continuación👇🏼",
+      "trigger": "choose-day"
+    },
+    {
+      "id": "choose-day",
+      "options": [
+        {
+          "value": "monday",
+          "label": "Lunes",
+          "trigger": "fantastic"
+        },
+        {
+          "value": "tuesday",
+          "label": "Martes",
+          "trigger": "fantastic"
+        },
+        {
+          "value": "wednesday",
+          "label": "Miércoles",
+          "trigger": "fantastic"
+        },
+        {
+          "value": "friday",
+          "label": "Viernes",
+          "trigger": "fantastic"
+        },
+        {
+          "value": "sunday",
+          "label": "Domingo",
+          "trigger": "fantastic"
+        }
+      ]
+    },
+    {
+      "id": "fantastic",
+      "message": "¡Fantástico!",
+      "trigger": "promise"
+    },
+    {
+      "id": "promise",
+      "message": "  Ten en cuenta que *esto es solo una solicitud... no una cita confirmada. Nuestro coordinador de pacientes se comunicará contigo lo antes posible para confirmar tu cita. 🙂",
+      "trigger": "thanks"
+    },
+    {
+      "id": "thanks",
+      "message": "  Si este chat se está produciendo fuera del horario comercial normal y se trata de una emergencia, dirígete a la sala de emergencias más cercana o llama al 911. Gracias por elegir nuestra práctica.",
+      "trigger": "goodbye"
+    },
+    {
+      "id": "goodbye",
+      "message": "  Eso es todo por ahora 👋🏼 \n  Si necesitas algo más, ¡aquí estaré!",
+      "end": true
+    }
+  ]
+}

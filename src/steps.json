@@ -1,0 +1,444 @@
+{
+    "steps": [
+      {
+        "id": "hello",
+        "message": "Hi! 👋🏼\n\nMy name is Natalie and I'm your assistant here at Queens Star Medical.\n\nHow can I help you today?",
+        "trigger": "ask-choose"
+      },
+      {
+        "id": "ask-choose",
+        "message": "Please choose option below👇🏼",
+        "trigger": "choose-option"
+      },
+      {
+        "id": "choose-option",
+        "options": [
+          {
+            "value": "appointment",
+            "label": "I'd like to request an appointment",
+            "trigger": "greate"
+          },
+          {
+            "value": "insurance",
+            "label": "What insurance do you accept?",
+            "trigger": "check-insurances"
+          },
+          {
+            "value": "services",
+            "label": "What services do you offer?",
+            "trigger": "check-services"
+          },
+          {
+            "value": "faq",
+            "label": "FAQ",
+            "trigger": "check-faq"
+          }
+        ]
+      },
+      {
+        "id": "check-faq",
+        "message": "Here are the questions we get asked most often by new and long-time patients!",
+        "trigger": "faqs"
+      },
+      {
+        "id": "faqs",
+        "options": [
+          {
+            "value": "faq1",
+            "label": "When are you open?",
+            "trigger": "open-time"
+          },
+          {
+            "value": "faq2",
+            "label": "What can you say about your providers?",
+            "trigger": "providers"
+          },
+          {
+            "value": "faq3",
+            "label": "What makes you unique or stand out?",
+            "trigger": "whatmakeyou"
+          },
+          {
+            "value": "faq4",
+            "label": "I want to ask a specific question",
+            "trigger": "specific-question"
+          }
+        ]
+      },
+      {
+        "id": "specific-question",
+        "message": "Great! 😁 \n\nBefore you ask your question. We want to collect some quick info so we can answer as soon as possible. 🏃‍♀",
+        "trigger": "question-new-patient"
+      },
+      {
+        "id": "question-new-patient",
+        "message": "Are you a new or existing patient?",
+        "trigger": "choose-question-new-patient"
+      },
+      {
+        "id": "choose-question-new-patient",
+        "options": [
+          {
+            "value": "new",
+            "label": "New",
+            "trigger": "question-nice-to-meet"
+          },
+          {
+            "value": "existing",
+            "label": "Existing",
+            "trigger": "question-ask-name"
+          }
+        ]
+      },
+      {
+        "id": "question-nice-to-meet",
+        "message": "We are excited to meet you!😉",
+        "trigger": "question-ask-name"
+      },
+      {
+        "id": "question-ask-name",
+        "message": "To start, what's your name?",
+        "trigger": "question-enter-name"
+      },
+      {
+        "id": "question-enter-name",
+        "user": true,
+        "trigger": "question-ask-phone-number"
+      },
+      {
+        "id": "question-ask-phone-number",
+        "message": "We can text you or call you, what's the best phone number to reach you at? 📲",
+        "trigger": "question-enter-phone-number"
+      },
+      {
+        "id": "question-enter-phone-number",
+        "user": true,
+        "trigger": "question-ask-email"
+      },
+      {
+        "id": "question-ask-email",
+        "message": "And what's the best email for you? 📩",
+        "trigger": "question-enter-email"
+      },
+      {
+        "id": "question-enter-email",
+        "user": true,
+        "trigger": "whatyouwant"
+      },
+      {
+        "id": "whatyouwant",
+        "message": "What do you want to ask us today?",
+        "trigger": "enter-question"
+      },
+      {
+        "id": "enter-question",
+        "user": true,
+        "trigger": "thanks-ask"
+      },
+      {
+        "id": "thanks-ask",
+        "message": "Thanks for that 👍\n\n I'll have our patient coordinator get back to you right away 🏃",
+        "trigger": "goodbye"
+      },
+      {
+        "id": "whatmakeyou",
+        "message": "⭐ 11 years in business \n⭐ Long-term patient relationships\n⭐ We provide an individualized and personalized care \n⭐We take our time needed to spend with patients based on their needs",
+        "trigger": "request-appointment"
+      },
+      {
+        "id": "providers",
+        "options": [
+          {
+            "value": "asya",
+            "label": "Asya Levy, M.D.",
+            "trigger": "asya"
+          },
+          {
+            "value": "eduard",
+            "label": "Eduard Levy, M.D.",
+            "trigger": "eduard"
+          }
+        ]
+      },
+      {
+        "id": "eduard",
+        "message": "👨🏻‍⚕️ Dr. Eduard Levy has earned great respect from his patients and colleagues for his devotion to his work. He has been practicing Internal Medicine since 1990 and yet to this day is passionate for his occupation.",
+        "trigger": "eduard1"
+      },
+      {
+        "id": "eduard1",
+        "message": "He has a kind and friendly nature, goes the extra mile to help his patients, and treats them with a great care and attention.👏🏼",
+        "trigger": "request-appointment"
+      },
+      {
+        "id": "asya",
+        "message": "👩🏻‍⚕️ Dr. Asya Levy is a determined and hardworking doctor. She treats her patients personally and with as much care and attention as if they were a part of her family.",
+        "trigger": "asya1"
+      },
+      {
+        "id": "asya1",
+        "message": "Dr. Asya Levy was recognized by the Patients' Choice in 2008. Every month over 40,000 patients across the U.S provide feedback about their experiences and rated various components such as bedside manner, doctor-patient face time, degree of follow-up and courtesy of office staff. 🙌🏼",
+        "trigger": "request-appointment"
+      },
+      {
+        "id": "open-time",
+        "message": "These are our office hours 🕒: \n\nMonday, Wednesday, Thursday & Sunday: 8:30 AM - 4:30 PM \nTuesday & Friday: 8:30 AM - 1:30 PM \nSaturday: Closed",
+        "trigger": "request-appointment"
+      },
+      {
+        "id": "check-services",
+        "message": "Here is a list of services we offer: \n\n🩺 Internal Medicine \n🩺 Geriatric Medicine \n🩺 Cardiology \n🩺 Pulmonary and Sleep Disorders",
+        "trigger": "promise-services"
+      },
+      {
+        "id": "promise-services",
+        "message": "Please contact us to hear more about our services! We'd be happy to answer all of your questions. 😁",
+        "trigger": "request-appointment"
+      },
+      {
+        "id": "check-insurances",
+        "message": "  Here is a list of insurances we accept: \n  \n✅ 1199 \n✅ AARP - Medicare \n✅ Aetna \n✅ Allied\n✅ BlueCross BlueShield (BCBS) \n✅ Cigna",
+        "trigger": "insurance1"
+      },
+      {
+        "id": "insurance1",
+        "message": "  ✅ Elderplan \n✅ EmblemHealth \n✅ Fidelis \n✅ GHI\n✅ Healthfirst \n✅ HIP  \n✅ Humana \n✅ Magnacare",
+        "trigger": "insurance2"
+      },
+      {
+        "id": "insurance2",
+        "message": "  ✅ Metroplus \n✅ Medicare \n✅ Medicare/Medicaid \n✅  Nippon Life Benefits  \n  ✅ Oxford \n✅ United HealthCare (UHC) \n✅ United HealthCare  (UHC) Community Plan \n✅ Wellcare",
+        "trigger": "insurance3"
+      },
+      {
+        "id": "insurance3",
+        "message": "  Please contact us for insurance information. We’d be very happy to  answer all of your questions! 😁",
+        "trigger": "request-appointment"
+      },
+      {
+        "id": "request-appointment",
+        "message": "Would you like to request an appointment?",
+        "trigger": "promise-appointment"
+      },
+      {
+        "id": "promise-appointment",
+        "options": [
+          {
+            "value": "yes",
+            "label": "Yes",
+            "trigger": "ask-appointment"
+          },
+          {
+            "value": "no",
+            "label": "No",
+            "trigger": "no-appointment"
+          }
+        ]
+      },
+      {
+        "id": "no-appointment",
+        "message": "No problem! I understand that you may want more info before requesting an appointment 📅",
+        "trigger": "have-better"
+      },
+      {
+        "id": "have-better",
+        "message": "To have a better understanding of our practice I'll have a patient coordinator reach out to you 🏃🏼",
+        "trigger": "ask-name1"
+      },
+      {
+        "id": "ask-name1",
+        "message": "To start, what's your name?",
+        "trigger": "enter-name1"
+      },
+      {
+        "id": "enter-name1",
+        "user": true,
+        "trigger": "hey"
+      },
+      {
+        "id": "hey",
+        "message": "Hey {previousValue}!",
+        "trigger": "ask-phone-number1"
+      },
+      {
+        "id": "ask-phone-number1",
+        "message": "In order for us to reach you, what's your best phone number? 📲",
+        "trigger": "enter-phone-number1"
+      },
+      {
+        "id": "enter-phone-number1",
+        "user": true,
+        "trigger": "send2team"
+      },
+      {
+        "id": "send2team",
+        "message": "  Got it! \n  \n  I'm sending this to my team right now and someone will reach out to  you as soon as possible 🏃",
+        "trigger": "ask-another"
+      },
+      {
+        "id": "ask-another",
+        "message": "In the meantime, would you like to ask another question?",
+        "trigger": "choose-another"
+      },
+      {
+        "id": "choose-another",
+        "options": [
+          {
+            "value": "yes",
+            "label": "Yes",
+            "trigger": "ask-choose"
+          },
+          {
+            "value": "no",
+            "label": "No",
+            "trigger": "goodbye"
+          }
+        ]
+      },
+      {
+        "id": "greate",
+        "message": "  Great 😁 \n  \n  I'm more than happy to help you with that. I just need to collect a  few things from you to get started. It'll only take a second...",
+        "trigger": "ask-appointment"
+      },
+      {
+        "id": "ask-appointment",
+        "message": "Please indicate the type of appointment you would like to request.",
+        "trigger": "choose-appointment"
+      },
+      {
+        "id": "choose-appointment",
+        "options": [
+          {
+            "value": "telemedicine",
+            "label": "Telemedicine",
+            "trigger": "ask-new-patient"
+          },
+          {
+            "value": "officevisit",
+            "label": "Office Visit",
+            "trigger": "ask-new-patient"
+          }
+        ]
+      },
+      {
+        "id": "ask-new-patient",
+        "message": "Are you a new or existing patient?",
+        "trigger": "choose-existing"
+      },
+      {
+        "id": "choose-existing",
+        "options": [
+          {
+            "value": "new",
+            "label": "New",
+            "trigger": "nice-to-meet"
+          },
+          {
+            "value": "existing",
+            "label": "Existing",
+            "trigger": "ask-name"
+          }
+        ]
+      },
+      {
+        "id": "nice-to-meet",
+        "message": "  We are excited to meet you! 😉  \n  \n  Please note: most insurances require one Primary Care Physician. New  patients may need to select or change their Primary Care Physician  prior to their appointment.",
+        "trigger": "ask-name"
+      },
+      {
+        "id": "ask-name",
+        "message": "To start, what's your name?",
+        "trigger": "enter-name"
+      },
+      {
+        "id": "enter-name",
+        "user": true,
+        "trigger": "ask-phone-number"
+      },
+      {
+        "id": "ask-phone-number",
+        "message": "We will send a confirmation of your appointment request via text. What is the best number to text the confirmation to? 📲",
+        "trigger": "enter-phone-number"
+      },
+      {
+        "id": "enter-phone-number",
+        "user": true,
+        "trigger": "noted"
+      },
+      {
+        "id": "noted",
+        "message": "Noted.",
+        "trigger": "ask-email"
+      },
+      {
+        "id": "ask-email",
+        "message": "And what's the best email for you? 📩",
+        "trigger": "enter-email"
+      },
+      {
+        "id": "enter-email",
+        "user": true,
+        "trigger": "gotit"
+      },
+      {
+        "id": "gotit",
+        "message": "Got it.",
+        "trigger": "ask-time"
+      },
+      {
+        "id": "ask-time",
+        "message": "  Now let us know what day works best for you. Keep in mind our office  hours 🕒: \n  \n  Monday, Wednesday, Friday & Sunday: 3:00 PM - 4:00 PM  \n  Tuesday: 3:00 PM - 4:00 PM 5:00 PM - 6:00 PM \n  \n  Find a day below👇🏼",
+        "trigger": "choose-day"
+      },
+      {
+        "id": "choose-day",
+        "options": [
+          {
+            "value": "monday",
+            "label": "Monday",
+            "trigger": "fantastic"
+          },
+          {
+            "value": "tuesday",
+            "label": "Tuesday",
+            "trigger": "fantastic"
+          },
+          {
+            "value": "wednesday",
+            "label": "Wednesday",
+            "trigger": "fantastic"
+          },
+          {
+            "value": "friday",
+            "label": "Friday",
+            "trigger": "fantastic"
+          },
+          {
+            "value": "sunday",
+            "label": "Sunday",
+            "trigger": "fantastic"
+          }
+        ]
+      },
+      {
+        "id": "fantastic",
+        "message": "Fantastic!",
+        "trigger": "promise"
+      },
+      {
+        "id": "promise",
+        "message": "  Please note - *this is only a request... not a confirmed appointment.  Our patient coordinator will reach out to you as soon as possible to  confirm your appointment! 🙂",
+        "trigger": "thanks"
+      },
+      {
+        "id": "thanks",
+        "message": "  If this chat is occurring after normal business hours, and this is an  emergency, please proceed to the nearest emergency room or call 911.  Thanks for choosing our practice.",
+        "trigger": "goodbye"
+      },
+      {
+        "id": "goodbye",
+        "message": "  That's all for now 👋🏼 \n  If you need me again for anything, I'll be here!",
+        "end": true
+      }
+    ]
+  }
