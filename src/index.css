@@ -18,18 +18,18 @@ code {
 }
 
 
-table {
+.maintable {
   border-collapse: collapse;
   width: 70%;
 }
-th,td {
+ th, td {
   border: 1px solid black;
   padding: 8px;
   text-align: center;
 }
-th {
+.maintable th {
   background-color: #f2f2f2;
 }
-tr:nth-child(even) {
+.maintable tr:nth-child(even) {
   background-color: #dddddd;
 }

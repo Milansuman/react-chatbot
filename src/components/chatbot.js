@@ -15,6 +15,52 @@ const Chatbotwrapper = styled.div`
   }
 `;
 
+const Review = props => {
+  const name = props.steps["enter-name"].value;
+  const birthday = props.steps["enter-birthday"].value;
+  const email = props.steps["enter-email"].value;
+  const phoneNumber = props.steps["enter-phone-number"].value;
+  const day = props.steps["choose-day"].value;
+  const insuranceProvider = props.steps["enter-insurance-provider"].value;
+  const insuranceId = props.steps["enter-insurance-id"].value;
+  return (
+    <div>
+      <table style={{width: '100%'}}>
+        <tbody>
+          <tr>
+            <td>Name</td>
+            <td>{name}</td>
+          </tr>
+          <tr>
+            <td>Birthday</td>
+            <td>{birthday}</td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td>{email}</td>
+          </tr>
+          <tr>
+            <td>Phone Number</td>
+            <td>{phoneNumber}</td>
+          </tr>
+          <tr>
+            <td>Appointment Day</td>
+            <td>{day}</td>
+          </tr>
+          <tr>
+            <td>Insurance Provider</td>
+            <td>{insuranceProvider}</td>
+          </tr>
+          <tr>
+            <td>Insurance ID</td>
+            <td>{insuranceId}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
 const Chatbot = ({ steps, name }) => {
   if (!localStorage.getItem("clinic" + name))
     localStorage.setItem("clinic" + name, JSON.stringify([]));
@@ -25,6 +71,77 @@ const Chatbot = ({ steps, name }) => {
       ? JSON.parse(localStorage.getItem("clinic" + name))
       : []
   );
+
+  const handleNameValidation = value => {
+    // Name validation logic
+    if (value.trim().length === 0) {
+      return "Please enter a valid name.";
+    }
+    return true;
+  };
+
+  const handleEmailValidation = value => {
+    // Email validation logic
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(value)) {
+      return "Please enter a valid email address.";
+    }
+    return true;
+  };
+
+  const handlePhoneValidation = value => {
+    // Phone number validation logic
+    const phoneRegex = /^\d{10}$/;
+    if (!phoneRegex.test(value)) {
+      return "Please enter a valid 10-digit phone number.";
+    }
+    return true;
+  };
+
+  const validateBirthday = value => {
+    const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+    if (!dateRegex.test(value)) {
+      return "Please enter a valid date in the format MM/DD/YYYY.";
+    }
+    return true;
+  };
+
+  const newSteps = steps.map(child => {
+    if (child.id === "enter-name" || child.id === "question-enter-name") {
+      return {
+        ...child,
+        validator: handleNameValidation
+      };
+    } else if (
+      child.id === "enter-email" ||
+      child.id === "question-enter-email"
+    ) {
+      return {
+        ...child,
+        validator: handleEmailValidation
+      };
+    } else if (
+      child.id === "enter-phone-number" ||
+      child.id === "question-enter-phone-number"
+    ) {
+      return {
+        ...child,
+        validator: handlePhoneValidation
+      };
+    } else if (child.id === "enter-birthday") {
+      return {
+        ...child,
+        validator: validateBirthday
+      };
+    } else if (child.id === "review") {
+      return {
+        ...child,
+        component: <Review />
+      };
+    }
+    return child;
+  });
+
   const handleClick = () => {
     setShowChatbot(!showChatbot);
   };
@@ -72,6 +189,7 @@ const Chatbot = ({ steps, name }) => {
       }
     });
   };
+
   return (
     <React.Fragment>
       <h1 style={{ textAlign: "center" }}>Clinic{name}</h1>
@@ -81,7 +199,7 @@ const Chatbot = ({ steps, name }) => {
       >
         Our chatbot assistant will guide you. You can send data easily.
       </p>
-      <table>
+      <table className="maintable">
         <thead>
           <tr>
             <th></th>
@@ -113,62 +231,63 @@ const Chatbot = ({ steps, name }) => {
           alignItems: "end"
         }}
       >
-        {showChatbot && (
-          <ChatBot
-            botDelay={4000}
-            handleEnd={handleEnd}
-            botAvatar="/react-chatbot/unnamed.jpg"
-            bubbleOptionStyle={{
-              fontSize: "22px",
-              marginLeft: "86px",
-              textAlign: "start"
-            }}
-            bubbleStyle={{
-              fontSize: "22px",
-              fontFamily: "Arial"
-            }}
-            contentStyle={{
-              width: "600px",
-              height: "65vh",
-              fontFamily: "Arial"
-            }}
-            avatarStyle={{
-              width: "80px",
-              height: "80px"
-            }}
-            inputStyle={{
-              fontSize: "22px"
-            }}
-            headerComponent={
-              <h1
-                style={{
-                  textAlign: "center",
-                  background: "#6E48AA",
-                  color: "white",
-                  margin: 0,
-                  paddingTop: "10px",
-                  paddingBottom: "10px"
-                }}
-              >
-                Clinic{name}
-              </h1>
-            }
-            steps={steps}
-            style={{
-              width: "600px",
-              height: "80vh",
-              whiteSpace: "pre-line",
-              fontFamily: "Helvetica",
-              marginBottom: "20px",
-              transformOrigin: "right bottom",
-              transition:
-                "width 200ms ease 0s, height 200ms ease 0s, max-height 200ms ease 0s, transform 300ms cubic-bezier(0, 1.2, 1, 1) 0s, opacity 83ms ease-out 0s"
-            }}
-          />
-        )}
+        <ChatBot
+          botDelay={4000}
+          handleEnd={handleEnd}
+          botAvatar="/react-chatbot/unnamed.jpg"
+          bubbleOptionStyle={{
+            fontSize: "22px",
+            marginLeft: "86px",
+            textAlign: "start",
+            background: "#4040ff"
+          }}
+          bubbleStyle={{
+            fontSize: "22px",
+            fontFamily: "Arial",
+            background: "#0080ff"
+          }}
+          contentStyle={{
+            width: "600px",
+            height: "65vh",
+            fontFamily: "Arial"
+          }}
+          avatarStyle={{
+            width: "80px",
+            height: "80px"
+          }}
+          inputStyle={{
+            fontSize: "22px"
+          }}
+          headerComponent={
+            <h1
+              style={{
+                textAlign: "center",
+                background: "#0080ff",
+                color: "white",
+                margin: 0,
+                paddingTop: "20px",
+                paddingBottom: "10px"
+              }}
+            >
+              Clinic{name}
+            </h1>
+          }
+          steps={newSteps}
+          style={{
+            display: !showChatbot ? "none" : "block",
+            width: "600px",
+            height: "80vh",
+            whiteSpace: "pre-line",
+            fontFamily: "Helvetica",
+            marginBottom: "20px",
+            transformOrigin: "right bottom",
+            transition:
+              "width 200ms ease 0s, height 200ms ease 0s, max-height 200ms ease 0s, transform 300ms cubic-bezier(0, 1.2, 1, 1) 0s, opacity 83ms ease-out 0s"
+          }}
+        />
         <div
           style={{
-            background: "#FF0000",
+            background: "#0080ff",
             width: "48px",
             height: "48px",
             display: "flex",
