@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import ChatBot from "react-simple-chatbot";
-import { isEmail, isMobilePhone } from "validator";
 
 const Chatbot = ({ steps, name }) => {
   if (!localStorage.getItem("clinic" + name))

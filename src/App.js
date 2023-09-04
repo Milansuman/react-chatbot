@@ -1,5 +1,4 @@
 import React from "react";
-import ChatBot from "react-simple-chatbot";
 import data from "./steps.json";
 import dataSpanish from "./steps-spanish.json";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -11,12 +10,12 @@ const App = () => {
       <Routes>
         <Route
           exact
-          path="/1"
+          path="/react-chatbot/1"
           element={<Chatbot steps={data.steps} name={1} />}
         />
         <Route
           exact
-          path="/2"
+          path="/react-chatbot/2"
           element={<Chatbot steps={dataSpanish.steps} name={2} />}
         />
       </Routes>
