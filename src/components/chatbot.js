@@ -1,5 +1,15 @@
 import React, { useState } from "react";
 import ChatBot from "react-simple-chatbot";
+import styled from "styled-components";
+
+const Chatbotwrapper = styled.div`
+  & .cRmLCo {
+    margin-left: 67px;
+  }
+  & .hiMqtA {
+    margin-left: 67px;
+  }
+`;
 
 const Chatbot = ({ steps, name }) => {
   if (!localStorage.getItem("clinic" + name))
@@ -89,7 +99,7 @@ const Chatbot = ({ steps, name }) => {
           ))}
         </tbody>
       </table>
-      <div
+      <Chatbotwrapper
         style={{
           position: "fixed",
           bottom: "20px",
@@ -105,20 +115,21 @@ const Chatbot = ({ steps, name }) => {
             handleEnd={handleEnd}
             botAvatar="/react-chatbot/unnamed.jpg"
             bubbleOptionStyle={{
-              fontSize: "17px"
+              fontSize: "20px",
+              width: "500px"
             }}
             bubbleStyle={{
-              fontSize: "17px",
+              fontSize: "20px",
               fontFamily: "Arial"
             }}
             contentStyle={{
-              width: "40vw",
+              width: "600px",
               height: "65vh",
               fontFamily: "Arial"
             }}
             avatarStyle={{
-              width: "40px",
-              height: "40px"
+              width: "60px",
+              height: "60px"
             }}
             headerComponent={
               <h1
@@ -128,7 +139,7 @@ const Chatbot = ({ steps, name }) => {
                   color: "white",
                   margin: 0,
                   paddingTop: "10px",
-                  paddingBottom: "10px",
+                  paddingBottom: "10px"
                 }}
               >
                 Clinic{name}
@@ -136,7 +147,7 @@ const Chatbot = ({ steps, name }) => {
             }
             steps={steps}
             style={{
-              width: "40vw",
+              width: "600px",
               height: "80vh",
               whiteSpace: "pre-line",
               fontFamily: "Helvetica",
@@ -200,7 +211,7 @@ const Chatbot = ({ steps, name }) => {
             </svg>
           </div>
         </div>
-      </div>
+      </Chatbotwrapper>
     </React.Fragment>
   );
 };
