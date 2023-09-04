@@ -3,6 +3,10 @@ import ChatBot from "react-simple-chatbot";
 import styled from "styled-components";
 
 const Chatbotwrapper = styled.div`
+  & .rsc-os-options {
+    display: flex;
+    flex-direction: column;
+  }
   & .cRmLCo {
     margin-left: 86px;
   }
@@ -116,8 +120,8 @@ const Chatbot = ({ steps, name }) => {
             botAvatar="/react-chatbot/unnamed.jpg"
             bubbleOptionStyle={{
               fontSize: "22px",
-              width: "480px",
-              marginLeft: "86px"
+              marginLeft: "86px",
+              textAlign: "start"
             }}
             bubbleStyle={{
               fontSize: "22px",
