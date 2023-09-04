@@ -136,6 +136,9 @@ const Chatbot = ({ steps, name }) => {
               width: "80px",
               height: "80px"
             }}
+            inputStyle={{
+              fontSize: "22px"
+            }}
             headerComponent={
               <h1
                 style={{
