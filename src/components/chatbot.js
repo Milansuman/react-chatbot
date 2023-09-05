@@ -23,6 +23,13 @@ const Chatbotwrapper = styled.div`
   }
 `;
 
+const ReloadButton = styled.div`
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: rotate(270deg);
+  }
+`;
+
 const Review = props => {
   const name = props.steps["enter-name"].value;
   const birthday = props.steps["enter-birthday"].value;
@@ -283,7 +290,8 @@ const Chatbot = ({ allSteps, name }) => {
       height: 50px;
       width: 50px;
       content: " ";
-      background: url("/react-chatbot/unnamed.jpg") center center/cover no-repeat;
+      background: url("/react-chatbot/unnamed.jpg") center center/cover
+        no-repeat;
       border-radius: 25px;
       position: absolute;
       z-index: 11;
@@ -424,7 +432,7 @@ const Chatbot = ({ allSteps, name }) => {
                 }}
               >
                 <span style={{ flexGrow: 1 }}>Clinic{name}</span>
-                <div
+                <ReloadButton
                   style={{
                     width: "30px",
                     height: "30px",
@@ -452,7 +460,7 @@ const Chatbot = ({ allSteps, name }) => {
                       />
                     </g>
                   </svg>
-                </div>
+                </ReloadButton>
               </h1>
             }
             steps={newSteps}
