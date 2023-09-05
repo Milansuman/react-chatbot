@@ -3,6 +3,14 @@ import ChatBot from "react-simple-chatbot";
 import styled from "styled-components";
 
 const Chatbotwrapper = styled.div`
+  @media (width < 768px) {
+    & .rsc-container {
+      width: 90vw !important;
+    }
+    & .rsc-content {
+      width: 90vw !important;
+    }
+  }
   & .rsc-os-options {
     display: flex;
     flex-direction: column;
@@ -25,7 +33,11 @@ const Review = props => {
   const insuranceId = props.steps["enter-insurance-id"].value;
   return (
     <div>
-      <table style={{width: '100%'}}>
+      <table
+        style={{
+          width: "100%"
+        }}
+      >
         <tbody>
           <tr>
             <td>Name</td>
@@ -199,7 +211,10 @@ const Chatbot = ({ steps, name }) => {
       >
         Our chatbot assistant will guide you. You can send data easily.
       </p>
-      <table className="maintable">
+      <table
+        className="maintable"
+        style={{ display: window.innerWidth < 768 ? "none" : "block" }}
+      >
         <thead>
           <tr>
             <th></th>
@@ -248,7 +263,7 @@ const Chatbot = ({ steps, name }) => {
           }}
           contentStyle={{
             width: "600px",
-            height: "65vh",
+            flexGrow: 1,
             fontFamily: "Arial"
           }}
           avatarStyle={{
@@ -274,7 +289,9 @@ const Chatbot = ({ steps, name }) => {
           }
           steps={newSteps}
           style={{
-            display: !showChatbot ? "none" : "block",
+            display: !showChatbot ? "none" : "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
             width: "600px",
             height: "80vh",
             whiteSpace: "pre-line",
