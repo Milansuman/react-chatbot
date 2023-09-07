@@ -63,7 +63,7 @@ const Review = props => {
             <td>{email}</td>
           </tr>
           <tr>
-            <td>Phone Number</td>
+            <td>Phone</td>
             <td>{phoneNumber}</td>
           </tr>
           <tr>
