@@ -309,13 +309,13 @@
       "id": "choose-appointment",
       "options": [
         {
-          "value": "telemedicine",
-          "label": "Telemedicine",
+          "value": "officevisit",
+          "label": "Office Visit",
           "trigger": "ask-new-patient"
         },
         {
-          "value": "officevisit",
-          "label": "Office Visit",
+          "value": "telemedicine",
+          "label": "Telemedicine",
           "trigger": "ask-new-patient"
         }
       ]
@@ -329,14 +329,14 @@
       "id": "choose-existing",
       "options": [
         {
-          "value": "new",
-          "label": "New",
-          "trigger": "nice-to-meet"
-        },
-        {
           "value": "existing",
           "label": "Existing",
           "trigger": "great-meet"
+        },
+        {
+          "value": "new",
+          "label": "New",
+          "trigger": "nice-to-meet"
         }
       ]
     },
@@ -351,41 +351,46 @@
       "trigger": "choose-appointment-type"
     },
     {
-      "id":"choose-appointment-type",
-      "options":[
+      "id": "choose-appointment-type",
+      "options": [
         {
-          "value" : "wellness",
-          "label" : "Annual Wellness",
+          "value": "wellness",
+          "label": "Annual Wellness",
           "trigger": "ask-name"
         },
         {
-          "value" : "followup",
-          "label" : "Follow up",
+          "value": "followup",
+          "label": "Follow up",
           "trigger": "ask-name"
         },
         {
-          "value" : "afterdischarge",
-          "label" : "After Hospital Discharge",
+          "value": "afterdischarge",
+          "label": "After Hospital Discharge",
           "trigger": "ask-name"
         },
         {
-          "value" : "afteremergency",
-          "label" : "After Emergency Room",
+          "value": "afteremergency",
+          "label": "After Emergency Room",
           "trigger": "ask-name"
         },
         {
-          "value" : "vaccine",
-          "label" : "Vaccine",
+          "value": "testresult",
+          "label": "Test Result Consultation",
           "trigger": "ask-name"
         },
         {
-          "value" : "infection",
-          "label" : "Infection",
+          "value": "vaccine",
+          "label": "Vaccine",
           "trigger": "ask-name"
         },
         {
-          "value" : "laboratory",
-          "label" : "Laboratory",
+          "value": "infection",
+          "label": "Infection",
+          "trigger": "ask-name"
+        },
+        {
+          "value": "laboratory",
+          "label": "Laboratory",
           "trigger": "ask-name"
         }
       ]
@@ -451,7 +456,7 @@
         {
           "value": "yes",
           "label": "Yes",
-          "trigger": "ask-insurance-provider"
+          "trigger": "ask-updated-insurance"
         },
         {
           "value": "no",
@@ -547,7 +552,7 @@
     },
     {
       "id": "choose-time-preference",
-      "options":[
+      "options": [
         {
           "value": "am",
           "label": "AM",
@@ -1006,13 +1011,13 @@
       "id": "choose-appointment",
       "options": [
         {
-          "value": "telemedicine",
-          "label": "Telemedicina",
+          "value": "officevisit",
+          "label": "Visita a la oficina",
           "trigger": "ask-new-patient"
         },
         {
-          "value": "officevisit",
-          "label": "Visita a la oficina",
+          "value": "telemedicine",
+          "label": "Telemedicina",
           "trigger": "ask-new-patient"
         }
       ]
