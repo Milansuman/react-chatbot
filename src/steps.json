@@ -2,7 +2,7 @@
   "steps-en": [
     {
       "id": "hello",
-      "message": "Hi! 👋🏼\n\nMy name is Natalie and I'm your assistant here at Queens Star Medical.\n\nHow can I help you today?",
+      "message": "Hello! 👋🏼\n\nMy name is Natalie from clinicID.\nI will be your assistant today.\n\nHow can I help you?",
       "trigger": "ask-choose"
     },
     {
@@ -15,7 +15,7 @@
       "options": [
         {
           "value": "appointment",
-          "label": "I'd like to request an appointment",
+          "label": "I need like to request an appointment",
           "trigger": "greate"
         },
         {
@@ -97,7 +97,7 @@
     },
     {
       "id": "question-ask-name",
-      "message": "To start, what's your name?",
+      "message": "What is your first name and last name?",
       "trigger": "question-enter-name"
     },
     {
@@ -247,7 +247,7 @@
     },
     {
       "id": "ask-name1",
-      "message": "To start, what's your name?",
+      "message": "What is your first name and last name?",
       "trigger": "enter-name1"
     },
     {
@@ -297,12 +297,12 @@
     },
     {
       "id": "greate",
-      "message": "  Great 😁 \n  \n  I'm more than happy to help you with that. I just need to collect a  few things from you to get started. It'll only take a second...",
+      "message": "  Great 😁\n\nI'm very happy to help you. I will need collect some information from you to get started. It'll only take a few minutes...",
       "trigger": "ask-appointment"
     },
     {
       "id": "ask-appointment",
-      "message": "Please indicate the type of appointment you would like to request.",
+      "message": "Please tell us who would like to be seen: you want to request.",
       "trigger": "choose-appointment"
     },
     {
@@ -336,18 +336,68 @@
         {
           "value": "existing",
           "label": "Existing",
+          "trigger": "great-meet"
+        }
+      ]
+    },
+    {
+      "id": "great-meet",
+      "message": "Great! You are already our patient.",
+      "trigger": "ask-appointment-type"
+    },
+    {
+      "id": "ask-appointment-type",
+      "message": "What type of appointment you need?",
+      "trigger": "choose-appointment-type"
+    },
+    {
+      "id":"choose-appointment-type",
+      "options":[
+        {
+          "value" : "wellness",
+          "label" : "Annual Wellness",
+          "trigger": "ask-name"
+        },
+        {
+          "value" : "followup",
+          "label" : "Follow up",
+          "trigger": "ask-name"
+        },
+        {
+          "value" : "afterdischarge",
+          "label" : "After Hospital Discharge",
+          "trigger": "ask-name"
+        },
+        {
+          "value" : "afteremergency",
+          "label" : "After Emergency Room",
+          "trigger": "ask-name"
+        },
+        {
+          "value" : "vaccine",
+          "label" : "Vaccine",
+          "trigger": "ask-name"
+        },
+        {
+          "value" : "infection",
+          "label" : "Infection",
+          "trigger": "ask-name"
+        },
+        {
+          "value" : "laboratory",
+          "label" : "Laboratory",
           "trigger": "ask-name"
         }
       ]
     },
     {
       "id": "nice-to-meet",
-      "message": "  We are excited to meet you! 😉  \n  \n  Please note: most insurances require one Primary Care Physician. New  patients may need to select or change their Primary Care Physician  prior to their appointment.",
-      "trigger": "ask-name"
+      "message": "  We are excited to meet you! 😉",
+      "trigger": "ask-appointment-type"
     },
     {
       "id": "ask-name",
-      "message": "To start, what's your name?",
+      "message": "What is your first name and last name?",
       "trigger": "enter-name"
     },
     {
@@ -357,7 +407,7 @@
     },
     {
       "id": "ask-birthday",
-      "message": "What is your date of birth?\nFor example: 01/01/1960",
+      "message": "What is your date of birth?\nFor example: 11/11/1980",
       "trigger": "enter-birthday"
     },
     {
@@ -367,7 +417,7 @@
     },
     {
       "id": "ask-phone-number",
-      "message": "We will send a confirmation of your appointment request via text. What is the best number to text the confirmation to? 📲",
+      "message": "What is the best phone number to call or text you?",
       "trigger": "enter-phone-number"
     },
     {
@@ -377,12 +427,12 @@
     },
     {
       "id": "noted",
-      "message": "Noted.",
+      "message": "Thank you.",
       "trigger": "ask-email"
     },
     {
       "id": "ask-email",
-      "message": "And what's the best email for you? 📩",
+      "message": "And what's the best email to reach you? 📩",
       "trigger": "enter-email"
     },
     {
@@ -411,8 +461,28 @@
       ]
     },
     {
+      "id": "ask-updated-insurance",
+      "message": "Is your health insurance is updated and current in our records?",
+      "trigger": "choose-updated-insurance"
+    },
+    {
+      "id": "choose-updated-insurance",
+      "options": [
+        {
+          "value": "yes",
+          "label": "Yes",
+          "trigger": "gotit"
+        },
+        {
+          "value": "no",
+          "label": "No",
+          "trigger": "ask-insurance-provider"
+        }
+      ]
+    },
+    {
       "id": "ask-insurance-provider",
-      "message": "What is your insurance provider?",
+      "message": "What is your health care insurance provider?",
       "trigger": "enter-insurance-provider"
     },
     {
@@ -437,7 +507,7 @@
     },
     {
       "id": "ask-time",
-      "message": "  Now let us know what day works best for you. Keep in mind our office  hours 🕒: \n  \n  Monday, Wednesday, Friday & Sunday: 3:00 PM - 4:00 PM  \n  Tuesday: 3:00 PM - 4:00 PM 5:00 PM - 6:00 PM \n  \n  Find a day below👇🏼",
+      "message": "Tell me what is the best day to schedule your appointment. Please keep in mind the clinic office hours 🕒: \n  \n  Monday, Wednesday, Friday & Sunday: 3:00 PM - 4:00 PM  \n  Tuesday: 3:00 PM - 4:00 PM 5:00 PM - 6:00 PM \n  \n  Select a day below👇🏼",
       "trigger": "choose-day"
     },
     {
@@ -446,33 +516,53 @@
         {
           "value": "monday",
           "label": "Monday",
-          "trigger": "fantastic"
+          "trigger": "time-prefference"
         },
         {
           "value": "tuesday",
           "label": "Tuesday",
-          "trigger": "fantastic"
+          "trigger": "time-prefference"
         },
         {
           "value": "wednesday",
           "label": "Wednesday",
-          "trigger": "fantastic"
+          "trigger": "time-prefference"
         },
         {
           "value": "friday",
           "label": "Friday",
-          "trigger": "fantastic"
+          "trigger": "time-prefference"
         },
         {
           "value": "sunday",
           "label": "Sunday",
+          "trigger": "time-prefference"
+        }
+      ]
+    },
+    {
+      "id": "time-prefference",
+      "message": "What is your appointment time preference?",
+      "trigger": "choose-time-preference"
+    },
+    {
+      "id": "choose-time-preference",
+      "options":[
+        {
+          "value": "am",
+          "label": "AM",
+          "trigger": "fantastic"
+        },
+        {
+          "value": "pm",
+          "label": "PM",
           "trigger": "fantastic"
         }
       ]
     },
     {
       "id": "fantastic",
-      "message": "Fantastic!",
+      "message": "Thank you.\n\nFantastic!",
       "trigger": "review"
     },
     {
@@ -542,6 +632,11 @@
           "value": "day",
           "label": "Appointment Day",
           "trigger": "update-day"
+        },
+        {
+          "value": "day",
+          "label": "Appointment time",
+          "trigger": "update-time"
         }
       ]
     },
@@ -581,18 +676,23 @@
       "trigger": "fantastic"
     },
     {
+      "id": "update-time",
+      "update": "choose-time-preference",
+      "trigger": "fantastic"
+    },
+    {
       "id": "promise",
-      "message": "  Please note - *this is only a request... not a confirmed appointment.  Our patient coordinator will reach out to you as soon as possible to  confirm your appointment! 🙂",
+      "message": "  Please note - *this is only a request... Appointment is not yet confirmed.  Our team member will reach out to you as soon as possible to confirm your appointment! 🙂",
       "trigger": "thanks"
     },
     {
       "id": "thanks",
-      "message": "  If this chat is occurring after normal business hours, and this is an  emergency, please proceed to the nearest emergency room or call 911.  Thanks for choosing our practice.",
+      "message": "  If this is an emergency, please go to the nearest emergency room or call 911. We are here to help you!",
       "trigger": "goodbye"
     },
     {
       "id": "goodbye",
-      "message": "  That's all for now 👋🏼 \n  If you need me again for anything, I'll be here!",
+      "message": "I'm done now, thank you!",
       "end": true
     }
   ],

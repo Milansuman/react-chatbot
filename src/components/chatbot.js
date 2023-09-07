@@ -21,6 +21,9 @@ const Chatbotwrapper = styled.div`
   & .hiMqtA {
     margin-left: 86px;
   }
+  & .iOCYje {
+    background: #CCC !important;
+  }
 `;
 
 const ReloadButton = styled.div`
@@ -31,13 +34,14 @@ const ReloadButton = styled.div`
 `;
 
 const Review = props => {
-  const name = props.steps["enter-name"].value;
-  const birthday = props.steps["enter-birthday"].value;
-  const email = props.steps["enter-email"].value;
-  const phoneNumber = props.steps["enter-phone-number"].value;
-  const day = props.steps["choose-day"].value;
-  const insuranceProvider = props.steps["enter-insurance-provider"].value;
-  const insuranceId = props.steps["enter-insurance-id"].value;
+  const name = props.steps["enter-name"]?.value;
+  const birthday = props.steps["enter-birthday"]?.value;
+  const email = props.steps["enter-email"]?.value;
+  const phoneNumber = props.steps["enter-phone-number"]?.value;
+  const day = props.steps["choose-day"]?.value;
+  const time = props.steps["choose-time-preference"]?.value;
+  const insuranceProvider = props.steps["enter-insurance-provider"]?.value;
+  const insuranceId = props.steps["enter-insurance-id"]?.value;
   return (
     <div>
       <table
@@ -63,11 +67,15 @@ const Review = props => {
             <td>{phoneNumber}</td>
           </tr>
           <tr>
-            <td>Appointment Day</td>
+            <td>Appt Day</td>
             <td>{day}</td>
           </tr>
           <tr>
-            <td>Insurance Provider</td>
+            <td>Appt time</td>
+            <td>{time}</td>
+          </tr>
+          <tr>
+            <td>Insurance</td>
             <td>{insuranceProvider}</td>
           </tr>
           <tr>
