@@ -17,15 +17,18 @@ code {
   src: url("/public/Helvetica.ttf");
 }
 
-
 .maintable {
   border-collapse: collapse;
   width: 70%;
 }
- th, td {
+th,
+td {
   border: 1px solid black;
   padding: 5px;
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .maintable th {
   background-color: #f2f2f2;
