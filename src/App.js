@@ -3,7 +3,7 @@ import data from "./steps.json";
 import Chatbot from "./components/chatbot";
 
 const App = () => {
-  return <Chatbot allSteps={data} name={1} />;
+  return <Chatbot/>;
 };
 
 export default App;

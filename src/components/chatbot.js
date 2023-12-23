@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ChatBot from "react-simple-chatbot";
 import styled from "styled-components";
 
@@ -16,13 +16,13 @@ const Chatbotwrapper = styled.div`
     flex-direction: column;
   }
   & .cRmLCo {
-    margin-left: 86px;
+    margin-left: 80px;
   }
   & .hiMqtA {
-    margin-left: 86px;
+    margin-left: 80px;
   }
   & .iOCYje {
-    background: #CCC !important;
+    background: #ccc !important;
   }
 `;
 
@@ -47,7 +47,7 @@ const Review = props => {
       <table
         style={{
           width: "100%",
-          tableLayout: 'fixed',
+          tableLayout: "fixed"
         }}
       >
         <tbody>
@@ -89,17 +89,11 @@ const Review = props => {
   );
 };
 
-const Chatbot = ({ allSteps, name }) => {
-  if (!localStorage.getItem("clinic" + name))
-    localStorage.setItem("clinic" + name, JSON.stringify([]));
+const Chatbot = () => {
   const [isOpened, setIsOpened] = useState(false);
   const [showChatbot, setShowChatbot] = useState(false);
-  const [profiles, setProfiles] = useState(
-    localStorage.getItem("clinic" + name)
-      ? JSON.parse(localStorage.getItem("clinic" + name))
-      : []
-  );
   const [key, setKey] = useState(0);
+  const [favicon, setFavicon] = useState("");
   const [steps, setSteps] = useState([
     {
       id: "1",
@@ -110,29 +104,31 @@ const Chatbot = ({ allSteps, name }) => {
       id: "lang",
       options: [
         { value: "en", label: "English", end: true },
-        { value: "sp", label: "Español", end: true },
-        { value: "pt", label: "Português", end: true },
-        { value: "ru", label: "Русский", end: true },
-        { value: "ch", label: "中文", end: true },
-        { value: "ja", label: "日本語", end: true },
-        { value: "hi", label: "हिंदी", end: true }
+        { value: "es", label: "Español", end: true }
       ]
     }
   ]);
+  const [clinicName, setClinicName] = useState(0);
+
+  useEffect(() => {
+    const currentParam = new URLSearchParams(window.location.search);
+    fetch(`/chatbot-name/${currentParam.get("id")}`)
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        setClinicName(data.name);
+        setFavicon(data.favicon);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [clinicName]);
 
   const handleNameValidation = value => {
     // Name validation logic
     if (value.trim().length === 0) {
       return "Please enter a valid name.";
-    }
-    return true;
-  };
-
-  const handleEmailValidation = value => {
-    // Email validation logic
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(value)) {
-      return "Please enter a valid email address.";
     }
     return true;
   };
@@ -161,14 +157,6 @@ const Chatbot = ({ allSteps, name }) => {
         validator: handleNameValidation
       };
     } else if (
-      child.id === "enter-email" ||
-      child.id === "question-enter-email"
-    ) {
-      return {
-        ...child,
-        validator: handleEmailValidation
-      };
-    } else if (
       child.id === "enter-phone-number" ||
       child.id === "question-enter-phone-number"
     ) {
@@ -186,6 +174,14 @@ const Chatbot = ({ allSteps, name }) => {
         ...child,
         component: <Review />
       };
+    } else if (child.id === "mapLocation") {
+      const html = child.component;
+      return {
+        ...child,
+        component: (
+          <div id="location" dangerouslySetInnerHTML={{ __html: html }} />
+        )
+      };
     }
     return child;
   });
@@ -201,12 +197,7 @@ const Chatbot = ({ allSteps, name }) => {
         id: "lang",
         options: [
           { value: "en", label: "English", end: true },
-          { value: "sp", label: "Español", end: true },
-          { value: "pt", label: "Português", end: true },
-          { value: "ru", label: "Русский", end: true },
-          { value: "ch", label: "中文", end: true },
-          { value: "ja", label: "日本語", end: true },
-          { value: "hi", label: "हिंदी", end: true }
+          { value: "es", label: "Español", end: true }
         ]
       }
     ]);
@@ -217,59 +208,44 @@ const Chatbot = ({ allSteps, name }) => {
     setShowChatbot(!showChatbot);
     setIsOpened(true);
   };
-
-  let tmp = {
-    name: "",
-    email: "",
-    phone: "",
-    day: ""
-  };
-
   const handleEnd = value => {
-    const vals = value.steps;
-    if (vals.lang) {
-      setTimeout(() => {
-        setSteps(allSteps[`steps-${vals.lang.value}`]);
-        setKey(1);
-        return true;
-      }, 1000);
-    } else {
-      const values = value.renderedSteps;
-      values.forEach(element => {
-        switch (element.id) {
-          case "enter-name":
-            tmp.name = element.value;
-            break;
-          case "enter-phone-number":
-            tmp.phone = element.value;
-            break;
-          case "enter-email":
-            tmp.email = element.value;
-            break;
-          case "choose-day":
-            tmp.day = element.value;
-            let tt = JSON.parse(localStorage.getItem("clinic" + name));
-            tt.push(tmp);
-            localStorage.setItem("clinic" + name, JSON.stringify(tt));
-            setProfiles(tt);
-            break;
-          case "question-enter-name":
-            tmp.name = element.value;
-            break;
-          case "question-enter-email":
-            tmp.email = element.value;
-            tt = JSON.parse(localStorage.getItem("clinic" + name));
-            tt.push(tmp);
-            localStorage.setItem("clinic" + name, JSON.stringify(tt));
-            setProfiles(tt);
-            break;
-          case "question-enter-phone-number":
-            tmp.phone = element.value;
-            break;
-          default:
-            break;
+    const currentSteps = value.steps;
+    const lang = currentSteps.lang?.value;
+    const currentParam = new URLSearchParams(window.location.search);
+    const id = currentParam.get("id");
+    if (lang) {
+      fetch(`/chatbot-data/${id}/${lang}`)
+        .then(async res => {
+          return res.json();
+        })
+        .then(data => {
+          setTimeout(() => {
+            setSteps(JSON.parse(data.data));
+            setKey(1);
+          }, 1000);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }else{
+      let payload = {}
+      for(let step of value.renderedSteps){
+        if(step.value){
+          payload[step.id] = step.value
         }
-      });
+      }
+
+      fetch("/chatbot/message", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          payload: JSON.stringify(payload),
+          clinic: currentParam.get("id"),
+          sex: currentParam.get("sex") ?? "m",
+          acronym: window.location.pathname.split("/")[2],
+          lang: currentParam.get("lang")
+        })
+      })
     }
   };
 
@@ -287,6 +263,7 @@ const Chatbot = ({ allSteps, name }) => {
     border-radius: 28px 0 0 28px !important;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 6px 16px rgba(0, 0, 0, 0.1) !important;
     cursor: pointer;
+    text-align: start;
 
     &:hover {
       & div {
@@ -299,8 +276,7 @@ const Chatbot = ({ allSteps, name }) => {
       height: 50px;
       width: 50px;
       content: " ";
-      background: url("/react-chatbot/unnamed.jpg") center center/cover
-        no-repeat;
+      background: url("${favicon}") center center/cover no-repeat;
       border-radius: 25px;
       position: absolute;
       z-index: 11;
@@ -355,38 +331,6 @@ const Chatbot = ({ allSteps, name }) => {
 
   return (
     <React.Fragment>
-      <h1 style={{ textAlign: "center" }}>Clinic{name}</h1>
-      <p
-        style={{ color: "red", textDecoration: "underline" }}
-        onClick={handleClick}
-      >
-        Our chatbot assistant will guide you. You can send data easily.
-      </p>
-      <table
-        className="maintable"
-        style={{ display: window.innerWidth < 768 ? "none" : "block" }}
-      >
-        <thead>
-          <tr>
-            <th></th>
-            <th>Patient Name</th>
-            <th>Patient E-mail</th>
-            <th>Patient Phone Number</th>
-            <th>Appointment day</th>
-          </tr>
-        </thead>
-        <tbody>
-          {profiles?.map((patient, index) => (
-            <tr key={index}>
-              <td>{index}</td>
-              <td>{patient.name}</td>
-              <td>{patient.email}</td>
-              <td>{patient.phone}</td>
-              <td>{patient.day}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
       <Chatbotwrapper
         style={{
           position: "fixed",
@@ -400,9 +344,9 @@ const Chatbot = ({ allSteps, name }) => {
         {isOpened && (
           <ChatBot
             key={key}
-            botDelay={4000}
+            botDelay={1000}
             handleEnd={handleEnd}
-            botAvatar="/react-chatbot/unnamed.jpg"
+            botAvatar={favicon}
             bubbleOptionStyle={{
               fontSize: "22px",
               marginLeft: "86px",
@@ -412,7 +356,7 @@ const Chatbot = ({ allSteps, name }) => {
             bubbleStyle={{
               fontSize: "22px",
               fontFamily: "Arial",
-              background: "#0080ff"
+              background: "#0080ff",
             }}
             contentStyle={{
               width: "600px",
@@ -429,6 +373,7 @@ const Chatbot = ({ allSteps, name }) => {
             headerComponent={
               <h1
                 style={{
+                  fontSize: "32px",
                   textAlign: "center",
                   background: "#0080ff",
                   color: "white",
@@ -440,7 +385,7 @@ const Chatbot = ({ allSteps, name }) => {
                   paddingBottom: "10px"
                 }}
               >
-                <span style={{ flexGrow: 1 }}>Clinic{name}</span>
+                <span style={{ flexGrow: 1 }}>{clinicName}</span>
                 <ReloadButton
                   style={{
                     width: "30px",
@@ -474,6 +419,7 @@ const Chatbot = ({ allSteps, name }) => {
             }
             steps={newSteps}
             style={{
+              textAlign: "start",
               marginRight: "20px",
               display: !showChatbot ? "none" : "flex",
               flexDirection: "column",
