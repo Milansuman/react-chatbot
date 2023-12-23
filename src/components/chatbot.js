@@ -241,7 +241,7 @@ const Chatbot = () => {
         body: JSON.stringify({
           payload: JSON.stringify(payload),
           clinic: currentParam.get("id"),
-          sex: currentParam.get("sex") ?? "m",
+          sex: currentParam.get("sex"),
           acronym: window.location.pathname.split("/")[2],
           lang: currentParam.get("lang")
         })
