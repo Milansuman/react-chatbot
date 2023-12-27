@@ -34,14 +34,6 @@ const ReloadButton = styled.div`
 `;
 
 const Review = props => {
-  const name = props.steps["enter-name"]?.value;
-  const birthday = props.steps["enter-birthday"]?.value;
-  const email = props.steps["enter-email"]?.value;
-  const phoneNumber = props.steps["enter-phone-number"]?.value;
-  const day = props.steps["choose-day"]?.value;
-  const time = props.steps["choose-time-preference"]?.value;
-  const insuranceProvider = props.steps["enter-insurance-provider"]?.value;
-  const insuranceId = props.steps["enter-insurance-id"]?.value;
   return (
     <div>
       <table
@@ -51,38 +43,7 @@ const Review = props => {
         }}
       >
         <tbody>
-          <tr>
-            <td>Name</td>
-            <td>{name}</td>
-          </tr>
-          <tr>
-            <td>Birthday</td>
-            <td>{birthday}</td>
-          </tr>
-          <tr>
-            <td>Email</td>
-            <td>{email}</td>
-          </tr>
-          <tr>
-            <td>Phone</td>
-            <td>{phoneNumber}</td>
-          </tr>
-          <tr>
-            <td>Appt Day</td>
-            <td>{day}</td>
-          </tr>
-          <tr>
-            <td>Appt time</td>
-            <td>{time}</td>
-          </tr>
-          <tr>
-            <td>Insurance</td>
-            <td>{insuranceProvider}</td>
-          </tr>
-          <tr>
-            <td>Insurance ID</td>
-            <td>{insuranceId}</td>
-          </tr>
+          {Object.entries(props.steps).filter(step => step[1].value !== undefined).map(step => <tr><td>{step[1].id}</td><td>{step[1].value}</td></tr>)}
         </tbody>
       </table>
     </div>
@@ -210,10 +171,10 @@ const Chatbot = () => {
   };
   const handleEnd = value => {
     const currentSteps = value.steps;
-    const lang = currentSteps.lang?.value;
+    const lang = currentSteps.lang?.value ?? "en";
     const currentParam = new URLSearchParams(window.location.search);
-    const id = currentParam.get("id");
-    if (lang) {
+    const id = currentParam.get("id") ?? 1;
+    if (key === 0) {
       fetch(`/chatbot-data/${id}/${lang}`)
         .then(async res => {
           return res.json();
@@ -227,7 +188,7 @@ const Chatbot = () => {
         .catch(err => {
           console.log(err);
         });
-    }else{
+    }else if(key === 1){
       let payload = {}
       for(let step of value.renderedSteps){
         if(step.value){
@@ -245,7 +206,29 @@ const Chatbot = () => {
           acronym: window.location.pathname.split("/")[2],
           lang: currentParam.get("lang")
         })
-      })
+      }).then(response => response.json()).then(json => {
+        let complete = [
+          {
+            id: "case",
+            message: `Your message was sent! A member of our care team will get back to you. We are here to help you. Thank you! Your case number is #${json.id}`,
+            trigger: "ok"
+          },{
+            id: "ok",
+            options: [
+              {
+                value: "ok",
+                label: "Ok",
+                end: true
+              }
+            ]
+          }
+        ]
+
+        setSteps(complete)
+        setKey(2)
+      }).catch(err => console.log(err))
+    }else{
+      returnState()
     }
   };
 
