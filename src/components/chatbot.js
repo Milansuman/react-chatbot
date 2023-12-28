@@ -64,7 +64,7 @@ const UploadNotification = (props) => {
 
     const currentParam = new URLSearchParams(window.location.search);
 
-    fetch("http://localhost:8080/chatbot/message", {
+    fetch("/chatbot/message", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
@@ -213,7 +213,7 @@ const Chatbot = () => {
     const currentParam = new URLSearchParams(window.location.search);
     const id = currentParam.get("id") ?? 1;
     if (key === 0) {
-      fetch(`http://localhost:8080/chatbot-data/${id}/${lang}`)
+      fetch(`/chatbot-data/${id}/${lang}`)
         .then(async res => {
           return res.json();
         })
