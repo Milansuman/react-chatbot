@@ -50,6 +50,44 @@ const Review = props => {
   );
 };
 
+const UploadNotification = (props) => {
+  const [caseNum, setCaseNum] = useState(0);
+  
+
+  useEffect(() => {
+    let payload = {}
+    for(let step of Object.entries(props.steps)){
+      if(step.value){
+        payload[step.id] = step.value
+      }
+    }
+
+    const currentParam = new URLSearchParams(window.location.search);
+
+    fetch("http://localhost:8080/chatbot/message", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        payload: JSON.stringify(payload),
+        clinic: currentParam.get("id"),
+        sex: currentParam.get("sex"),
+        acronym: window.location.pathname.split("/")[2],
+        lang: currentParam.get("lang")
+      })
+    }).then(response => response.json()).then(json => {
+      setCaseNum(json.id)
+    }).catch(err => console.log(err));
+
+    return () => {
+      setCaseNum(0)
+    }
+  }, [props]);
+
+  return (
+    <div>Your case number is #{caseNum}</div>
+  );
+}
+
 const Chatbot = () => {
   const [isOpened, setIsOpened] = useState(false);
   const [showChatbot, setShowChatbot] = useState(false);
@@ -96,9 +134,9 @@ const Chatbot = () => {
 
   const handlePhoneValidation = value => {
     // Phone number validation logic
-    const phoneRegex = /^\d{10}$/;
+    const phoneRegex = /^[\d-]*$/;
     if (!phoneRegex.test(value)) {
-      return "Please enter a valid 10-digit phone number.";
+      return "Please enter a valid phone number.";
     }
     return true;
   };
@@ -175,60 +213,39 @@ const Chatbot = () => {
     const currentParam = new URLSearchParams(window.location.search);
     const id = currentParam.get("id") ?? 1;
     if (key === 0) {
-      fetch(`/chatbot-data/${id}/${lang}`)
+      fetch(`http://localhost:8080/chatbot-data/${id}/${lang}`)
         .then(async res => {
           return res.json();
         })
         .then(data => {
           setTimeout(() => {
-            setSteps(JSON.parse(data.data));
+            
+            let conversation = JSON.parse(data.data);
+            let endMessage = conversation.filter((step) => step.end)[0];
+            
+
+            let endStep = {
+              id: "upload",
+              component: <UploadNotification/>,
+              asMessage: true,
+              end: true
+            }
+
+            setSteps([
+              ...conversation.filter(step => !step.end),
+              {
+                id: endMessage.id,
+                message: endMessage.message,
+                trigger: "upload"
+              },
+              endStep
+            ]);
             setKey(1);
           }, 1000);
         })
         .catch(err => {
           console.log(err);
         });
-    }else if(key === 1){
-      let payload = {}
-      for(let step of value.renderedSteps){
-        if(step.value){
-          payload[step.id] = step.value
-        }
-      }
-
-      fetch("/chatbot/message", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({
-          payload: JSON.stringify(payload),
-          clinic: currentParam.get("id"),
-          sex: currentParam.get("sex"),
-          acronym: window.location.pathname.split("/")[2],
-          lang: currentParam.get("lang")
-        })
-      }).then(response => response.json()).then(json => {
-        let complete = [
-          {
-            id: "case",
-            message: `Your message was sent! A member of our care team will get back to you. We are here to help you. Thank you! Your case number is #${json.id}`,
-            trigger: "ok"
-          },{
-            id: "ok",
-            options: [
-              {
-                value: "ok",
-                label: "Ok",
-                end: true
-              }
-            ]
-          }
-        ]
-
-        setSteps(complete)
-        setKey(2)
-      }).catch(err => console.log(err))
-    }else{
-      returnState()
     }
   };
 
@@ -327,7 +344,7 @@ const Chatbot = () => {
         {isOpened && (
           <ChatBot
             key={key}
-            botDelay={1000}
+            botDelay={1500}
             handleEnd={handleEnd}
             botAvatar={favicon}
             bubbleOptionStyle={{
